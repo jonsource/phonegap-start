@@ -35,7 +35,7 @@ var app = {
     	if(!navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
     		setTimeout(function() { app.onDeviceReady(); }, 500); //this is the browser
       	} else {
-      	   	document.addEventListener("deviceready", app.DeviceReady, false);
+      	   	document.addEventListener("deviceready", app.onDeviceReady, false);
       	}
         
     },
