@@ -94,8 +94,10 @@ var debugPage =
     '<div>' +
         '<div class="scroller">' +
         	'<h2>Accelerometer</h2>' +
-            '<div class="accelerometer">' +
-            '</div>' +
+            '<div class="accelerometer"></div>' +
+            '<h2>GPS</h2>' +
+            '<div class="gps"></div>' +
+            '<button class="topcoat-button--cta geo">get position</button>' +
         '</div>' +
     '</div>';
 
@@ -164,7 +166,11 @@ function pageEnter(page)
 	}
 	else if(id=='debug')
 	{	accelStartWatch();
-		
+	
+		$('button.geo').on('click',function() {
+				geoGetPosition();
+				$('button.geo').addClass('blink');
+		});
 	}
 }
 // Primitive template processing. In a real-life app, use Handlerbar.js, Mustache.js or another template engine
