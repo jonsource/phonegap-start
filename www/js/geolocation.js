@@ -2,7 +2,7 @@ var gps;
 
 function geoGetPosition()
 {	gps=$('.gps');
-	navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
+	navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, { maximumAge: 3000, timeout: 4000, enableHighAccuracy: true });
 	console.log('getting position');
 }
 
