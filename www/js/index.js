@@ -19,6 +19,7 @@
 var native=true;;
 var $navi;
 var slider;
+var map=false;
 
 var app = {
 		
@@ -49,6 +50,8 @@ var app = {
         slider = new PageSlider($(".app"));
         $('.app').html('');
         $navi = $('#navi');
+        
+        //route to home
         route();
     },
     // Update DOM on a Received Event
@@ -70,12 +73,13 @@ window.addEventListener('load', function () {
 
 // The dynamically built HTML pages. In a real-life app, In a real-life app, use Handlerbar.js, Mustache.js or another template engine
 var homePage =
-    '<div id="home">' +
+    '<div id="home" class="page">' +
         '<div class="scroller">' +
             '<ul class="list">' +
-                '<li><a href="#page2"><strong>Medi Bot</strong></a></li>' +
-                '<li><a href="#page3"><strong>Ripple Bot</strong></a></li>' +
+                '<li class="topcoat-button"><a href="#page2"><strong>Medi Bot</strong></a></li>' +
+                '<li class="topcoat-button"><a href="#page3"><strong>Ripple Bot</strong></a></li>' +
             '</ul>' +
+            '<div id="map-canvas"></div>' +
         '</div>' +
     '</div>';
 
@@ -161,6 +165,10 @@ function pageEnter(page)
 	id=page.attr('id');
 	if(id=='home')
 	{	$navi.prepend('<a href="#debug" class="topcoat-button debug left">Debug</a>');
+		if(map===false)
+		{	loadMapScript();
+			map = 1;
+		}
 		accelStopWatch();
 		
 	}
@@ -178,4 +186,20 @@ function merge(tpl, data) {
     return tpl.replace("{{img}}", data.img)
               .replace("{{name}}", data.name)
               .replace("{{description}}", data.description);
+}
+
+
+function initMap() {
+	  var mapOptions = {
+	    zoom: 8,
+	    center: new google.maps.LatLng(-34.397, 150.644),
+	    mapTypeId: google.maps.MapTypeId.ROADMAP  };
+	  map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+}
+
+function loadMapScript() {
+	  var script = document.createElement("script");
+	  script.type = "text/javascript";
+	  script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyBArBgpOeDqMex18uwIwTx46EpqW22o-SQ&sensor=false&callback=initMap";
+	  document.body.appendChild(script);
 }

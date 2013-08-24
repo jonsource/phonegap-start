@@ -26,10 +26,9 @@ body{
 
 /* Portrait layout (default) */
 .app {
-    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
     position:fixed;             /* position in the center of the screen */
     left:0;
-    top:80px;
+    top:64px;
     height:100%;                   /* text area height */
     width:100%;                   /* text area width */
     //text-align:center;
@@ -89,6 +88,7 @@ h1 {
 }
 
 .page {
+    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
     position: absolute;
     top: 0;
     left: 0;
@@ -134,4 +134,15 @@ h1 {
 
 a {
 	color: #C6C8C8;
+}
+
+#map-canvas, .scroller
+{	height: 100%; }
+
+.scroller ul
+{	position: absolute;
+	top: 1rem;
+	left: 50%;
+	margin-left: -120px;
+	z-index: 20;
 }
