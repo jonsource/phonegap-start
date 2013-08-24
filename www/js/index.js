@@ -45,10 +45,10 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        slider = new PageSlider($(".app"));
+       /* slider = new PageSlider($(".app"));
         $('.app').html('');
         $navi = $('#navi');
-        route();
+        route();*/
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
