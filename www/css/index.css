@@ -20,6 +20,10 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
+body{
+	color: #E6E8E8;
+}
+
 /* Portrait layout (default) */
 .app {
     background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
@@ -121,4 +125,13 @@ h1 {
 .right
 {
 	float: right;
+}
+
+
+#navi{
+	padding-top: 0.45rem;
+}
+
+a {
+	color: #C6C8C8;
 }

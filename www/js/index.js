@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
+var native=true;;
 var $navi;
 var slider;
 
@@ -33,6 +33,7 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
     	if(!navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+    		native = false;
     		setTimeout(function() { app.onDeviceReady(); }, 500); //this is the browser
       	} else {
       	   	document.addEventListener("deviceready", app.onDeviceReady, false);
@@ -72,7 +73,6 @@ var homePage =
     '<div id="home">' +
         '<div class="scroller">' +
             '<ul class="list">' +
-                '<li><a href="#debug"><strong>Build Bot</strong></a></li>' +
                 '<li><a href="#page2"><strong>Medi Bot</strong></a></li>' +
                 '<li><a href="#page3"><strong>Ripple Bot</strong></a></li>' +
             '</ul>' +
@@ -86,6 +86,15 @@ var detailsPage =
                 '<img src="images/{{img}}"/>' +
                 '<h2>{{name}}</h2>' +
                 '<p>{{description}}</p>' +
+            '</div>' +
+        '</div>' +
+    '</div>';
+
+var debugPage =
+    '<div>' +
+        '<div class="scroller">' +
+        	'<h2>Accelerometer</h2>' +
+            '<div class="accelerometer">' +
             '</div>' +
         '</div>' +
     '</div>';
@@ -105,7 +114,7 @@ function route(event) {
     {	
 	        
 	    if (hash === "#debug") {
-	        page = merge(detailsPage, {img: "buildbot.jpg", name: "DEBUG", description: "Debuggy debuggy buggity bug."});
+	        page = merge(debugPage, {img: "buildbot.jpg", name: "DEBUG", description: "Debuggy debuggy buggity bug."});
 	        id='debug';
 	//        slider.slide($(page), "right");
 	    } else if (hash === "#page2") {
@@ -127,10 +136,10 @@ function route(event) {
 	    $page.attr('id',id);
 	}
     pageLeave(slider.getCurrentPage());
-    pageEnter($page);
+    
     if(hash==='#debug') slider.slidePageFrom($page,'left');
     else slider.slidePage($page);
-    
+    pageEnter($page);
 }
 
 
@@ -140,6 +149,7 @@ function pageLeave(page)
 	id=page.attr('id');
 	if(id=='home')
 	{	$navi.find('.debug').remove();
+		
 	}
 }
 
@@ -149,6 +159,11 @@ function pageEnter(page)
 	id=page.attr('id');
 	if(id=='home')
 	{	$navi.prepend('<a href="#debug" class="topcoat-button debug left">Debug</a>');
+		accelStopWatch();
+		
+	}
+	else if(id=='debug')
+	{	accelStartWatch();
 		
 	}
 }
