@@ -190,7 +190,8 @@ function merge(tpl, data) {
 
 
 function initMap() {
-	  var mapOptions = {
+	alert('in initMap');
+		var mapOptions = {
 	    zoom: 8,
 	    center: new google.maps.LatLng(-34.397, 150.644),
 	    mapTypeId: google.maps.MapTypeId.ROADMAP  };
@@ -201,7 +202,7 @@ function initMap() {
 function loadMapScript() {
 	  var script = document.createElement("script");
 	  script.type = "text/javascript";
-	  script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyBArBgpOeDqMex18uwIwTx46EpqW22o-SQ&sensor=false&callback=initMap";
+	  script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyBArBgpOeDqMex18uwIwTx46EpqW22o-SQ&sensor=true&callback=initMap";
 	  document.body.appendChild(script);
 	  alert('loadMapScript');
 }
