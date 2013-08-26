@@ -189,11 +189,11 @@ function merge(tpl, data) {
 
 
 function initMap() {
+	alert('init map '+map);
 	var mapOptions = {
 	    zoom: 12,
 	    center: new google.maps.LatLng(-34.397, 150.644),
 	    mapTypeId: google.maps.MapTypeId.ROADMAP  };
 	map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 	navigator.geolocation.getCurrentPosition(onMapGeoSuccess, onGeoError, { maximumAge: 3000, timeout: 8000, enableHighAccuracy: true });
-	alert('init map');
 }
