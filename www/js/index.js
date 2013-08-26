@@ -195,4 +195,5 @@ function initMap() {
 	    mapTypeId: google.maps.MapTypeId.ROADMAP  };
 	map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 	navigator.geolocation.getCurrentPosition(onMapGeoSuccess, onGeoError, { maximumAge: 3000, timeout: 8000, enableHighAccuracy: true });
+	alert('init map');
 }
