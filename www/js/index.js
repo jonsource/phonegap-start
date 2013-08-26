@@ -166,8 +166,7 @@ function pageEnter(page)
 	if(id=='home')
 	{	$navi.prepend('<a href="#debug" class="topcoat-button debug left">Debug</a>');
 		if(map===false)
-		{	loadMapScript();
-			map = 1;
+		{	initMap();
 		}
 		accelStopWatch();
 		
@@ -190,19 +189,10 @@ function merge(tpl, data) {
 
 
 function initMap() {
-	alert('in initMap');
-		var mapOptions = {
-	    zoom: 8,
+	var mapOptions = {
+	    zoom: 12,
 	    center: new google.maps.LatLng(-34.397, 150.644),
 	    mapTypeId: google.maps.MapTypeId.ROADMAP  };
-	  map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-	  alert('map loaded');
-}
-
-function loadMapScript() {
-	  var script = document.createElement("script");
-	  script.type = "text/javascript";
-	  script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyBArBgpOeDqMex18uwIwTx46EpqW22o-SQ&sensor=true&callback=initMap";
-	  document.body.appendChild(script);
-	  alert('loadMapScript');
+	map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+	navigator.geolocation.getCurrentPosition(onMapGeoSuccess, onGeoError, { maximumAge: 3000, timeout: 8000, enableHighAccuracy: true });
 }

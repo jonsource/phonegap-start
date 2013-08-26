@@ -22,6 +22,15 @@ function onGeoSuccess(position) {
     gps.offsetWidth;
     $('button.geo').removeClass('blink');
 }
+
+function onMapGeoSuccess(position) {
+	if(map===false)
+    { 	alert('Map not loaded!');
+		position={timestamp:d.getTime(),coords:{latitude:5,speed:20,accuracy:'none'}};
+    }
+	var myLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	map.panTo(myLocation);
+}
  // Error
 function onGeoError() {
     alert('onError!');
